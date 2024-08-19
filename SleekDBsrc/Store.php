@@ -736,6 +736,8 @@ class Store
 
     // TODO remove timeout on major update
     // Set timeout.
+
+    /*
     if (array_key_exists("timeout", $configuration)) {
       if ((!is_int($configuration['timeout']) || $configuration['timeout'] <= 0) && !($configuration['timeout'] === false)){
         throw new InvalidConfigurationException("timeout has to be an int > 0 or false");
@@ -748,6 +750,7 @@ class Store
       trigger_error($message, E_USER_DEPRECATED);
       set_time_limit($this->timeout);
     }
+    */
 
     if(array_key_exists("primary_key", $configuration)){
       $primaryKey = $configuration["primary_key"];
