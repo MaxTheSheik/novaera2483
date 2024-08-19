@@ -8,6 +8,9 @@ include __DIR__ . "/../SleekDBsrc/Store.php";
 
 $databaseDirectory = __DIR__ . "/../SleekDatabase";
 
+// $databaseDirectory = "/var/www/html/SleekDatabase";
+
+/*
 $newsStore = new \SleekDB\Store("news", $databaseDirectory);
 $userStore = new Store('users', $databaseDirectory);
 $postStore = new Store('posts', $databaseDirectory);
@@ -50,12 +53,28 @@ $userStore->insert([
 
 
 $allUsers = $userStore->findAll();
+*/
+
+$deviceStore = new Store('devices', $databaseDirectory);
+$deviceStore->deleteStore();
 
 
+$deviceStore = new Store('devices', $databaseDirectory);
+$deviceStore->insert([
+  'model' => 'EZ11120P',
+  'name' => 'SAMSUNG S21',
+  'ram' => '128 gb',
+  ]
+);
 
+$deviceStore->updateById(2, [ "name" => "SAMSUNG S23" ]);
 
-print_r($allNews);
-print_r($allUsers);
+$allDevices = $deviceStore->findAll();
+$findDevices = $deviceStore->findBy(["model", "like", "EZ%"], ["model" => "asc"], 10, 0);
+
+print_r($allDevices);
+// print_r($allUsers);
+
 
 
 // echo "<H1>Sleek Test</H1>";
