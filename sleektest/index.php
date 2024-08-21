@@ -4,13 +4,15 @@
 // var_dump(__DIR__);
 use SleekDB\Store;
 
-include __DIR__ . "/../SleekDBsrc/Store.php";
+include "/var/www/html/SleekDBsrc/Store.php";
 
-$databaseDirectory = __DIR__ . "/../SleekDatabase";
+// var_dump(__DIR__);exit;
+
+$databaseDirectory = "/var/www/html/SleekDatabase";
 
 // $databaseDirectory = "/var/www/html/SleekDatabase";
 
-/*
+
 $newsStore = new \SleekDB\Store("news", $databaseDirectory);
 $userStore = new Store('users', $databaseDirectory);
 $postStore = new Store('posts', $databaseDirectory);
@@ -53,21 +55,21 @@ $userStore->insert([
 
 
 $allUsers = $userStore->findAll();
-*/
 
-$deviceStore = new Store('devices', $databaseDirectory);
-$deviceStore->deleteStore();
+
+// $deviceStore = new Store('devices', $databaseDirectory);
+// $deviceStore->deleteStore();
 
 
 $deviceStore = new Store('devices', $databaseDirectory);
 $deviceStore->insert([
-  'model' => 'EZ11120P',
-  'name' => 'SAMSUNG S21',
+  'model' => 'Q1',
+  'name' => 'ELETTROLUX AT400',
   'ram' => '128 gb',
   ]
 );
 
-$deviceStore->updateById(2, [ "name" => "SAMSUNG S23" ]);
+// $deviceStore->updateById(2, [ "name" => "ELETTROLUX AT400" ]);
 
 $allDevices = $deviceStore->findAll();
 $findDevices = $deviceStore->findBy(["model", "like", "EZ%"], ["model" => "asc"], 10, 0);
